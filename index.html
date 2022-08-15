@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Fira Sans", sans-serif;
+        letter-spacing: 2px;
+      }
+
+      .main {
+        height: 100vh;
+      }
+
+      label {
+        font-weight: bold;
+        padding: 5px;
+        font-size: 12px;
+      }
+
+      .card-desc {
+        min-width: 320px;
+        padding: 6px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid rgb(189, 182, 182);
+      }
+
+      .card-exp {
+        max-width: 80px;
+        margin-left: 5px;
+        border-radius: 5px;
+        border: 1px solid rgb(189, 182, 182);
+        padding: 6px;
+      }
+
+      .cvc {
+        margin-left: 10px;
+        max-width: 150px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid rgb(189, 182, 182);
+        padding: 6px;
+      }
+
+      button {
+        width: 320px;
+      }
+
+      .bg-main {
+        z-index: 0;
+      }
+
+      .card-front {
+        position: absolute;
+        left: 140px;
+        z-index: 1;
+        top: 100px;
+      }
+
+      .card-back {
+        position: absolute;
+        top: 380px;
+        left: 220px;
+      }
+      .error-message {
+        color: rgb(243, 46, 46);
+        font-size: 12px;
+        margin-left: -170px;
+        font-weight: bold;
+      }
+
+      @media screen and (max-width: 650px) {
+        .card-front {
+          position: absolute;
+          top: 800px;
+          left: 50px;
+          z-index: 1;
+        }
+
+        .card-back {
+          position: absolute;
+          top: 720px;
+          left: 100px;
+        }
+
+        .card-images > img {
+          width: 250px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="row">
+        <div class="col-md-4 col-lg-4">
+          <img
+            src="./images/bg-main-desktop.png"
+            alt="bg-main"
+            class="bg-main"
+          />
+          <div class="card-images">
+            <img src="./images/bg-card-front.png" class="card-front" />
+          </div>
+          <div class="card-images">
+            <img src="./images/bg-card-back.png" class="card-back" />
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <div
+            class="d-flex flex-column align-items-center justify-content-center pt-5"
+          >
+            <div class="p-3">
+              <label htmlFor="card-holder-name">CARDHOLDER NAME</label><br />
+              <input type="text" class="card-desc" />
+            </div>
+            <div class="error-message"></div>
+            <div class="p-3">
+              <label htmlFor="card-number">CARD NUMBER</label><br />
+              <input type="text" class="card-desc" />
+            </div>
+            <div class="d-flex flex-nowrap">
+              <div>
+                <div class="d-flex">
+                  <div>
+                    <label htmlFor="EXP.DATE">EXP.DATE</label><br />
+                    <input type="text" class="card-exp" />
+                  </div>
+
+                  <div>
+                    <label htmlFor="MM">(MM/YY)</label><br />
+                    <input type="text" class="card-exp" />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label htmlFor="CVC">CVC</label><br />
+                <input type="text" class="cvc" />
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center mx-4 pt-2 mb-3">
+            <button
+              type="button"
+              id="btn"
+              class="border-0 mt-4 p-2 bg-dark text-white rounded"
+              onclick="read();"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      function read() {
+        var cardholdername = document.getElementsByClassName("card-desc")[0];
+        var errorMsg = document.getElementsByClassName("error-message")[0];
+        if (cardholdername.value.length == 0) {
+          errorMsg.textContent = "field can't be empty";
+        }
+      }
+    </script>
+  </body>
+</html>
